@@ -1,0 +1,8 @@
+{
+    "python.analysis.extraPaths": [
+        "./Programm/UI_and_PY_FILES",
+        "./GUIs/GUI_onlyLaptop",
+        "./RechenEngines",
+        "./Programm/JSON_FILES"
+    ]
+}
