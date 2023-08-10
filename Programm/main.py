@@ -27,8 +27,8 @@ HEIGTH = 700
 
 class App(tk.Tk):
     def __init__(self, *args, **kwargs):
-        #tk.Tk.__init__(self, *args, **kwargs)
-        super().__init__(*args, **kwargs)
+        tk.Tk.__init__(self, *args, **kwargs)
+        # super().__init__(*args, **kwargs)
 
         self.title('Kräfteberechnung Statik')
         self.resizable(width=False, height=False)
@@ -377,26 +377,25 @@ class TraegerZwei(tk.Frame):
 
     def check(self, d, i, P, s, S, v, V, W):
         text = P  # e.get()
-        #print('text:', text)
+        # print('text:', text)
         parts = text.split('.')
         parts_number = len(parts)
         if parts_number > 2:
-            #print('too much dots')
+            # print('too much dots')
             return False
         if parts_number > 1 and parts[1]:  # don't check empty string
             if not parts[1].isdecimal() or len(parts[1]) > 2:
-                #print('wrong second part')
+                # print('wrong second part')
                 return False
         if parts_number > 0 and parts[0]:  # don't check empty string
             if not parts[0].isdecimal() or len(parts[0]) > 4:
-                #print('wrong first part')
+                # print('wrong first part')
                 return False
         return True
 
     # reset values when returning to previous window
 
     def resetInputs_Ifok(self):
-
         if len(self.forceList) != 0 and len(self.distanceList) != 0:
             MsgBox = messagebox.askquestion(
                 'Zurück', 'Ihre Änderungen gehen verloren, \n\nMöchten Sie fortfahren?', icon='warning')
@@ -467,7 +466,6 @@ class TraegerZwei(tk.Frame):
                 self.distanceEntry.delete(0, END)
 
     # method to remove force
-
     def remForce(self):
         # selected item
         curItem = self.tableInputs.focus()
@@ -493,8 +491,12 @@ class TraegerZwei(tk.Frame):
                 self.FAx = 0.0
                 self.FAy = 0.0
                 self.FBy = 0.0
-                self.balkEntry.configure(state="normal")
+                self.balkEntry.configure(state=tk.NORMAL)
                 self.balkEntry.delete(0, END)
+                self.forceEntry.delete(0, END)
+                self.angleEntry.delete(0, END)
+                self.distanceEntry.delete(0, END)
+
         else:
             # if lists for storing inputs are still empty
             if len(self.forceList) == 0 or len(self.distanceList) == 0:
@@ -506,8 +508,8 @@ class TraegerZwei(tk.Frame):
                 messagebox.showerror(
                     title="No Data selected", message="Zum löschen bitte zuerst einen Eintrag wählen!")
 
-
     # calculation with Class PorterOnTwoSupport
+
     def calc(self):
         traegerClass = trGr.PorterOnTwoSupport(
             self.forceList, self.anglesList, self.distanceList, self.balk_laenge)
@@ -543,7 +545,6 @@ class ZentralEins(tk.Frame):
         self.canvas.background = img
         bg = self.canvas.create_image(0, 0, anchor=tk.NW, image=img)
 
-
         self.zentralImg = ImageTk.PhotoImage(Image.open(PATH_16))
         zentralImg = self.canvas.create_image(550, 250, image=self.zentralImg,
                                               anchor='nw')
@@ -551,41 +552,36 @@ class ZentralEins(tk.Frame):
         self.zentralImg2 = ImageTk.PhotoImage(
             Image.open(PATH_17))
         zentralimg = self.canvas.create_image(670, 50, image=self.zentralImg2,
-                                                 anchor='nw')
-        
+                                              anchor='nw')
+
         # adding some info text on canvas
         self.canvas.create_text(250, 40, text="Zentrales Kraftsystem",
                                 fill="black", font=('Helvetica 30 bold'))
-        
-        
+
         self.canvas.create_text(380, 260, text="Hier greifen gleichzeitig Kräfte, auf einem Punkt A \n\n"
                                 "an einem Bauteil an. Die Wirklinien aller Kräfte schneiden sich in \n\neinem"
                                 " gemeinsamen Punkt. Man nennt diesen Schnittpunkt \n\nden Zentralpunkt"
                                 "A des Kräftesystems. Lt Längsverschiebungssatz \n\nkönnen alle Kräfte auf ihren Wirklinien im  Punkt A verschoben werden.\n\n"
                                 "Man kann den Körper nur verschieben, aber nicht drehen.\n\n"
                                 "Ein ZS ist im Gleichgewicht,"
-                                "wenn sich das Krafteck schließt."
-                                , fill="black", font=('Helvetica 15 bold'))
-        
-        
+                                "wenn sich das Krafteck schließt.", fill="black", font=('Helvetica 15 bold'))
+
         self.canvas.create_text(320, 510, text="Erforderliche Eingabe für die Berechnung",
                                 fill="black", font=('Helvetica 20 bold'))
         self.canvas.create_text(200, 600, text="Die Beträge der Kräfte in Newton\n\n"
                                 "Die Winkeln der Kräfte in ° Grad.", fill="black", font=('Helvetica 15 bold'))
-        
-        
-        
+
         # Add other tkinter widgets.
         Towelcome = tk.Button(
             self, text="Startbildschirm", width=20, height=2,  command=lambda: controller.show_frame("startPage"))
         Towelcome.place(x=720, y=625)
-        #button.grid(row=0, column=0)
+        # button.grid(row=0, column=0)
 
         # Add other tkinter widgets.
         ToZentral2 = tk.Button(
             self, text="Beispiel starten", width=20, height=2,  command=lambda: controller.show_frame("ZentralZwei"))
         ToZentral2.place(x=900, y=625)
-        #button.grid(row=0, column=0)
+        # button.grid(row=0, column=0)
 
 #####################################################################################################################################################################################################################
 
@@ -715,19 +711,19 @@ class ZentralZwei(tk.Frame):
     # only floats or ints, plus max number of 5 decimals and after "." only 2 decimals allowed
     def check(self, d, i, P, s, S, v, V, W):
         text = P  # e.get()
-        #print('text:', text)
+        # print('text:', text)
         parts = text.split('.')
         parts_number = len(parts)
         if parts_number > 2:
-            #print('too much dots')
+            # print('too much dots')
             return False
         if parts_number > 1 and parts[1]:  # don't check empty string
             if not parts[1].isdecimal() or len(parts[1]) > 2:
-                #print('wrong second part')
+                # print('wrong second part')
                 return False
         if parts_number > 0 and parts[0]:  # don't check empty string
             if not parts[0].isdecimal() or len(parts[0]) > 4:
-                #print('wrong first part')
+                # print('wrong first part')
                 return False
         return True
 
@@ -857,13 +853,13 @@ class ParallelEins(tk.Frame):
         TotraegerGUI_Teil1 = tk.Button(
             self, text="Startbildschirm", width=20, height=2,  command=lambda: controller.show_frame("startPage"))
         TotraegerGUI_Teil1.place(x=720, y=600)
-        #button.grid(row=0, column=0)
+        # button.grid(row=0, column=0)
 
         # Add other tkinter widgets.
         TotraegerGUI_Teil2 = tk.Button(
             self, text="Beispiel starten", width=20, height=2,  command=lambda: controller.show_frame("ParallelZwei"))
         TotraegerGUI_Teil2.place(x=900, y=600)
-        #button.grid(row=0, column=0)
+        # button.grid(row=0, column=0)
 
 ####################################################################################################################################################################################################################
 
@@ -973,19 +969,19 @@ class ParallelZwei(tk.Frame):
 
     def check(self, d, i, P, s, S, v, V, W):
         text = P  # e.get()
-        #print('text:', text)
+        # print('text:', text)
         parts = text.split('.')
         parts_number = len(parts)
         if parts_number > 2:
-            #print('too much dots')
+            # print('too much dots')
             return False
         if parts_number > 1 and parts[1]:  # don't check empty string
             if not parts[1].isdecimal() or len(parts[1]) > 2:
-                #print('wrong second part')
+                # print('wrong second part')
                 return False
         if parts_number > 0 and parts[0]:  # don't check empty string
             if not parts[0].isdecimal() or len(parts[0]) > 4:
-                #print('wrong first part')
+                # print('wrong first part')
                 return False
         return True
 
