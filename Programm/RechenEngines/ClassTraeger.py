@@ -143,7 +143,7 @@ class PorterOnTwoSupport:
 
             # store in json file
             #print(carrier_Example_Dict)
-            with open(PATH_TRAEGER_JSON, "w") as outfile:
+            with open("../JSON_FILES/ClassTragerExample.json", "w") as outfile:
                 json.dump(carrier_Example_Dict, outfile, indent=4)
 
         except ValueError as e:

@@ -99,7 +99,7 @@ class ParallelForce:
 
                 # store in json file
                 #print(parallelForcesExampleDict)
-            with open(PATH_PARALLEL_JSON, "w") as outfile:
+            with open("../JSON_FILES/ClassParallelExample.json", "w") as outfile:
                     json.dump(parallelForcesExampleDict, outfile, indent=4)
             
             

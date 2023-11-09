@@ -158,19 +158,19 @@ class startPage(tk.Frame, App):
         self.roland = ImageTk.PhotoImage(Image.open(PATH_10))
         rolandImg = self.canvas.create_image(250, 180, image=self.roland,
                                              anchor='nw')
-        self.canvas.create_text(325, 380, text="Loulengo Roland",
+        self.canvas.create_text(325, 380, text="member 1",
                                 fill="black", font=('Helvetica 17 bold'))
 
         self.malicia = ImageTk.PhotoImage(Image.open(PATH_11))
         maliciaImg = self.canvas.create_image(500, 200, image=self.malicia,
                                               anchor='nw')
-        self.canvas.create_text(550, 380, text="Luinovic Malica",
+        self.canvas.create_text(550, 380, text="member 3",
                                 fill="black", font=('Helvetica 17 bold'))
 
         self.jana = ImageTk.PhotoImage(Image.open(PATH_12))
         janaImg = self.canvas.create_image(670, 220, image=self.jana,
                                            anchor='nw')
-        self.canvas.create_text(740, 380, text="Okoli Jana",
+        self.canvas.create_text(740, 380, text="member 2",
                                 fill="black", font=('Helvetica 17 bold'))
 
         # buttons
